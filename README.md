@@ -120,39 +120,179 @@ docker-compose ps
 
 ## 📁 Project Structure
 
-```
+```text
 finance-assistant/
-├── frontend/web/              # React + Vite frontend
-│   └── src/
-│       ├── pages/             # Login, Register, Dashboard, ChatPage, Accounts
-│       ├── components/        # Sidebar, ProtectedRoute
-│       └── services/          # api.js (Axios), auth.service.js
-├── services/
-│   ├── api-gateway/           # Express reverse proxy          (port 3000)
-│   ├── auth-service/          # JWT auth + MongoDB             (port 3001)
-│   ├── chat-service/          # Socket.IO chat relay           (port 3002)
-│   ├── user-data-service/     # File uploads via Multer        (port 3003)
-│   ├── transaction-service/   # Transaction → CSV writer       (port 3004)
-│   ├── compliance-service/    # PII regex masking              (port 3005)
-│   ├── notification-service/  # Alert logger                   (port 3006)
-│   ├── llm-service/           # Gemini/OpenAI + RAG context    (port 5000)
-│   └── pathway-processor/     # Python RAG vector search       (port 8081)
-├── data/
-│   └── user-uploads/          # Shared volume — drop files here for RAG
-├── scripts/
-│   ├── test-rag-flow.js       # End-to-end RAG test
-│   └── setup-wsl.sh           # WSL environment setup
-├── docs/
-│   ├── ARCHITECTURE.md        # Data flow & function-level trace
-│   ├── DEVELOPER_GUIDE.md     # Ports, env vars, service details
-│   ├── HOW_TO_RUN.md          # Every command to start/stop/debug
-│   ├── STARTUP_GUIDE.md       # First-time setup walkthrough
-│   ├── TODO.md                # Roadmap & planned features
-│   └── WSL_MIGRATION_GUIDE.md # WSL setup instructions
-├── start.bat                  # One-click startup with UI link
-├── docker-compose.yml         # Full 14-container orchestration
-├── .env                       # API keys & config (git-ignored)
-└── .env.example               # Template for required env vars
+├── .env
+├── .env.example
+├── .gitignore
+├── README.md
+├── data
+│   ├── alerts_status.csv
+│   ├── bank-streams
+│   ├── debug_transactions.csv
+│   ├── knowledge-base
+│   │   ├── README.md
+│   │   └── documents
+│   │       ├── aml_policies.md
+│   │       ├── compliance_rules.pdf
+│   │       └── faq.json
+│   ├── simulated-streams
+│   │   └── transactions.json
+│   └── user-uploads
+│       ├── Harsh
+│       │   ├── bank statements.txt
+│       │   ├── transactions.txt
+│       │   └── financial_goals.txt
+│       └── chandu
+│           └── index.txt
+├── docker-compose.yml
+├── docs
+│   ├── ARCHITECTURE.md
+│   ├── DEVELOPER_GUIDE.md
+│   ├── GEMINI_MIGRATION.md
+│   ├── HOW_TO_RUN.md
+│   ├── STARTUP_GUIDE.md
+│   ├── TODO.md
+│   ├── WSL_MIGRATION_GUIDE.md
+│   ├── data-flow.md
+│   ├── pathway-design.md
+│   └── user_journey.md
+├── frontend
+│   └── web
+│       ├── Dockerfile
+│       ├── index.html
+│       ├── package-lock.json
+│       ├── package.json
+│       ├── src
+│       │   ├── App.css
+│       │   ├── App.jsx
+│       │   ├── Auth.css
+│       │   ├── components
+│       │   │   ├── ProtectedRoute.jsx
+│       │   │   ├── Sidebar.css
+│       │   │   └── Sidebar.jsx
+│       │   ├── hooks
+│       │   ├── index.css
+│       │   ├── main.jsx
+│       │   ├── pages
+│       │   │   ├── Accounts.jsx
+│       │   │   ├── ChatPage.css
+│       │   │   ├── ChatPage.jsx
+│       │   │   ├── Dashboard.css
+│       │   │   ├── Dashboard.jsx
+│       │   │   ├── Login.jsx
+│       │   │   ├── Register.jsx
+│       │   │   ├── Settings.css
+│       │   │   └── Settings.jsx
+│       │   ├── services
+│       │   │   ├── api.js
+│       │   │   └── auth.service.js
+│       │   └── store
+│       │       └── AuthContext.jsx
+│       └── vite.config.js
+├── infrastructure
+├── package-lock.json
+├── package.json
+├── sample_bank_statement.csv
+├── scripts
+│   ├── deployment
+│   ├── maintenance
+│   ├── setup
+│   │   └── produce_transactions.py
+│   ├── setup-wsl.sh
+│   └── test-rag-flow.js
+├── services
+│   ├── api-gateway
+│   │   ├── .env
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── app.js
+│   │       ├── middleware
+│   │       └── routes
+│   ├── auth-service
+│   │   ├── .env
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── app.js
+│   │       ├── controllers
+│   │       │   └── authController.js
+│   │       ├── middleware
+│   │       │   └── authMiddleware.js
+│   │       ├── models
+│   │       │   └── User.js
+│   │       ├── routes
+│   │       │   └── authRoutes.js
+│   │       └── services
+│   ├── chat-service
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       └── app.js
+│   ├── compliance-service
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── app.js
+│   │       ├── middleware
+│   │       │   └── piiMasker.js
+│   │       ├── rules
+│   │       └── services
+│   ├── llm-service
+│   │   ├── .env
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── app.js
+│   │       ├── controllers
+│   │       ├── prompts
+│   │       ├── routes
+│   │       │   └── chatRoutes.js
+│   │       └── services
+│   │           ├── geminiService.js
+│   │           ├── llmClient.js
+│   │           ├── pathwayService.js
+│   │           └── promptBuilder.js
+│   ├── notification-service
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── app.js
+│   │       └── services
+│   ├── pathway-processor
+│   │   ├── Dockerfile
+│   │   ├── main.py
+│   │   └── requirements.txt
+│   ├── transaction-service
+│   │   ├── .env
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── app.js
+│   │       ├── controllers
+│   │       ├── routes
+│   │       │   └── transactionRoutes.js
+│   │       └── services
+│   │           └── kafkaProducer.js
+│   └── user-data-service
+│       ├── .env
+│       ├── Dockerfile
+│       ├── package-lock.json
+│       ├── package.json
+│       └── src
+│           ├── app.js
+│           └── models
+│               └── Document.js
+├── start.bat
+└── test_upload_document.txt
 ```
 
 ---
