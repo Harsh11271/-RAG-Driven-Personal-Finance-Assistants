@@ -1,0 +1,183 @@
+finance-assistant/
+├── .env
+├── .env.example
+├── .gitignore
+├── README.md
+├── data
+│   ├── alerts_status.csv
+│   ├── bank-streams
+│   ├── debug_transactions.csv
+│   ├── knowledge-base
+│   │   ├── README.md
+│   │   └── documents
+│   │       ├── aml_policies.md
+│   │       ├── compliance_rules.pdf
+│   │       └── faq.json
+│   ├── simulated-streams
+│   │   └── transactions.json
+│   └── user-uploads
+│       ├── Harsh
+│       │   ├── 1772023699517_Bank statements.txt
+│       │   ├── 1772023771561_Transactions.txt
+│       │   └── financial_goals.txt
+│       ├── bank_details.txt
+│       ├── bank_statement_jan2025.csv
+│       ├── chandu
+│       │   └── 1772013956956_New Text Document.txt
+│       ├── financial_goals.txt
+│       ├── inbound_transactions.csv
+│       ├── investment_portfolio.txt
+│       └── monthly_budget.txt
+├── docker-compose.yml
+├── docs
+│   ├── ARCHITECTURE.md
+│   ├── DEVELOPER_GUIDE.md
+│   ├── GEMINI_MIGRATION.md
+│   ├── HOW_TO_RUN.md
+│   ├── STARTUP_GUIDE.md
+│   ├── TODO.md
+│   ├── WSL_MIGRATION_GUIDE.md
+│   ├── data-flow.md
+│   ├── pathway-design.md
+│   └── user_journey.md
+├── frontend
+│   └── web
+│       ├── Dockerfile
+│       ├── index.html
+│       ├── package-lock.json
+│       ├── package.json
+│       ├── src
+│       │   ├── App.css
+│       │   ├── App.jsx
+│       │   ├── Auth.css
+│       │   ├── components
+│       │   │   ├── ProtectedRoute.jsx
+│       │   │   ├── Sidebar.css
+│       │   │   └── Sidebar.jsx
+│       │   ├── hooks
+│       │   ├── index.css
+│       │   ├── main.jsx
+│       │   ├── pages
+│       │   │   ├── Accounts.jsx
+│       │   │   ├── ChatPage.css
+│       │   │   ├── ChatPage.jsx
+│       │   │   ├── Dashboard.css
+│       │   │   ├── Dashboard.jsx
+│       │   │   ├── Login.jsx
+│       │   │   ├── Register.jsx
+│       │   │   ├── Settings.css
+│       │   │   └── Settings.jsx
+│       │   ├── services
+│       │   │   ├── api.js
+│       │   │   └── auth.service.js
+│       │   └── store
+│       │       └── AuthContext.jsx
+│       └── vite.config.js
+├── get_tree.py
+├── infrastructure
+├── package-lock.json
+├── package.json
+├── sample_bank_statement.csv
+├── scripts
+│   ├── deployment
+│   ├── maintenance
+│   ├── setup
+│   │   └── produce_transactions.py
+│   ├── setup-wsl.sh
+│   └── test-rag-flow.js
+├── services
+│   ├── api-gateway
+│   │   ├── .env
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── app.js
+│   │       ├── middleware
+│   │       └── routes
+│   ├── auth-service
+│   │   ├── .env
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── app.js
+│   │       ├── controllers
+│   │       │   └── authController.js
+│   │       ├── middleware
+│   │       │   └── authMiddleware.js
+│   │       ├── models
+│   │       │   └── User.js
+│   │       ├── routes
+│   │       │   └── authRoutes.js
+│   │       └── services
+│   ├── chat-service
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       └── app.js
+│   ├── compliance-service
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── app.js
+│   │       ├── middleware
+│   │       │   └── piiMasker.js
+│   │       ├── rules
+│   │       └── services
+│   ├── llm-service
+│   │   ├── .env
+│   │   ├── Dockerfile
+│   │   ├── debug_models.js
+│   │   ├── list_models_v1beta.js
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── app.js
+│   │       ├── controllers
+│   │       ├── prompts
+│   │       ├── routes
+│   │       │   └── chatRoutes.js
+│   │       └── services
+│   │           ├── geminiService.js
+│   │           ├── llmClient.js
+│   │           ├── openaiService.js
+│   │           ├── pathwayService.js
+│   │           └── promptBuilder.js
+│   ├── notification-service
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── app.js
+│   │       └── services
+│   ├── pathway-processor
+│   │   ├── Dockerfile
+│   │   ├── main.py
+│   │   └── requirements.txt
+│   ├── transaction-service
+│   │   ├── .env
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── src
+│   │       ├── app.js
+│   │       ├── controllers
+│   │       ├── routes
+│   │       │   └── transactionRoutes.js
+│   │       └── services
+│   │           └── kafkaProducer.js
+│   └── user-data-service
+│       ├── .env
+│       ├── Dockerfile
+│       ├── package-lock.json
+│       ├── package.json
+│       └── src
+│           ├── app.js
+│           └── models
+│               └── Document.js
+├── start.bat
+├── test_upload_document.txt
+└── tree.txt
