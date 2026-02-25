@@ -5,7 +5,8 @@ import Sidebar from '../components/Sidebar';
 import api from '../services/api';
 import './ChatPage.css';
 
-const socket = io.connect('http://localhost:3002');
+const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3002';
+const socket = io.connect(socketUrl);
 
 const ChatPage = () => {
     const { user } = useAuth();
