@@ -167,7 +167,7 @@ LLM Service (port 5000)
   │  │  │        geminiService.js (line 13)                   │    │
   │  │  │                                                     │    │
   │  │  │  1. Gets Gemini client via GoogleGenerativeAI SDK   │    │
-  │  │  │  2. Uses model: "gemini-1.5-flash"                  │    │
+  │  │  │  2. Uses model: "gemini-2.5-flash"                  │    │
   │  │  │  3. Builds prompt:                                  │    │
   │  │  │     "You are a helpful financial assistant...        │    │
   │  │  │      Context from user documents: {context}         │    │
@@ -296,6 +296,43 @@ Compliance Service (port 3005)
 
 ---
 
+## Flow 6: Dynamic Dashboard Data Retrieval
+
+### What happens when the Dashboard loads
+
+```
+Frontend (Dashboard.jsx)
+  └─▶ api.post('/chat/dashboard-data', { userId, forceRefresh })
+        │
+        │  File: frontend/web/src/pages/Dashboard.jsx
+        │
+        ▼
+API Gateway → proxies to LLM Service (port 5000)
+        │
+        ▼
+LLM Service
+  └─▶ POST /api/chat/dashboard-data
+        │
+        │  File: services/llm-service/src/routes/chatRoutes.js
+        │
+        │  1. Check Cache: Returns instantly if cached data exists (TTL 15m).
+        │  2. Parallel RAG Queries: Promise.all() asks Pathway for broad topics:
+        │     - "bank statement transactions spending budget savings..."
+        │     - "monthly budget financial plan income expenses..."
+        │  3. RAG Processor (port 8081) returns up to 16 document chunks.
+        │  4. Deduplicates chunks based on text content.
+        │  5. Builds enormous JSON prompt asking AI to extract exact metrics:
+        │     totalSpend, goals, categories, etc.
+        │  6. Calls Google Gemini (gemini-2.5-flash) to generate the JSON.
+        │  7. Parses AI response, caches it, and returns to frontend.
+        │
+        ▼
+Frontend receives response
+  │  Renders UI instantly based on structured JSON from AI.
+```
+
+---
+
 ## Shared Data Volume
 
 The key architectural pattern: **multiple services share the same directory**
@@ -368,7 +405,7 @@ The key architectural pattern: **multiple services share the same directory**
 |------|---------|
 | `App.jsx` | Router: Login, Register, Dashboard, Chat, Accounts |
 | `ChatPage.jsx` | AI chat UI + Socket.IO + LLM API calls |
-| `Dashboard.jsx` | Financial overview (currently mock data) |
+| `Dashboard.jsx` | Dynamic AI-generated financial overview via RAG and Gemini |
 | `Accounts.jsx` | Document upload + AI personalization |
 | `Login.jsx` / `Register.jsx` | Auth forms |
 | `api.js` | Axios instance with auth token interceptor |

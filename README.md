@@ -165,7 +165,7 @@ finance-assistant/
 | `.env` | API keys, LLM provider, JWT secret |
 | `docker-compose.yml` | All 14 service definitions and networking |
 | `data/user-uploads/` | Drop `.txt` / `.csv` files here for AI to learn from |
-| `services/llm-service/src/services/geminiService.js` | Gemini model config (`gemini-1.5-flash`) |
+| `services/llm-service/src/services/geminiService.js` | Gemini model config (`gemini-2.5-flash`) |
 | `services/llm-service/src/services/llmClient.js` | LLM provider routing (Gemini vs OpenAI) |
 | `services/pathway-processor/main.py` | RAG engine — file watcher, embedder, search |
 | `services/api-gateway/src/app.js` | All API proxy route mappings |
@@ -236,7 +236,7 @@ docker-compose down -v && docker-compose up --build -d
 |-------|------------|
 | Frontend | React 18, Vite, Axios, Socket.IO Client |
 | Backend Services | Node.js 18, Express |
-| AI / LLM | Google Gemini (`gemini-1.5-flash`), OpenAI (optional) |
+| AI / LLM | Google Gemini (`gemini-2.5-flash`), OpenAI (optional) |
 | RAG Engine | Python, NumPy, OpenAI Embeddings (optional keyword fallback) |
 | Auth | JWT, bcryptjs, MongoDB |
 | Databases | MongoDB 6.0, PostgreSQL 15 |

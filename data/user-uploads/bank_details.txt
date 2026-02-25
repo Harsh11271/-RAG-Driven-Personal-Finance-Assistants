@@ -1,0 +1,70 @@
+BANK ACCOUNT DETAILS & SUMMARY
+
+=== Primary Checking Account ===
+Bank: Chase (JPMorgan Chase)
+Account Type: Total Checking
+Account Number: ****4829
+Routing Number: 021000021
+Current Balance: $8,464.64 (as of Jan 31, 2025)
+Monthly Direct Deposit: $5,200.00 (bi-weekly: $2,600 x 2)
+Overdraft Protection: Enabled (linked to savings)
+Debit Card: Visa ending in 7832
+
+=== Savings Account ===
+Bank: Marcus by Goldman Sachs
+Account Type: High-Yield Online Savings
+Account Number: ****6173
+Current Balance: $8,200.00
+APY: 4.40%
+Monthly Auto-Transfer: $500.00 (from checking on the 10th)
+Purpose: Emergency Fund (Target: $15,000)
+
+=== Credit Cards ===
+
+Card 1: Chase Sapphire Preferred
+  Card Number: ****9214
+  Credit Limit: $12,000
+  Current Balance: $2,100.00
+  APR: 21.49%
+  Rewards: 2x on travel & dining, 1x everything else
+  Points Balance: 34,200 points
+  Monthly Payment: $700.00 (paying off aggressively)
+  Due Date: 15th of each month
+
+Card 2: Amazon Prime Rewards Visa
+  Card Number: ****3387
+  Credit Limit: $5,000
+  Current Balance: $340.50
+  APR: 19.24%
+  Rewards: 5% back on Amazon, 2% restaurants/gas, 1% other
+  Statement Balance Paid: In full monthly
+  Due Date: 22nd of each month
+
+=== Loan ===
+Lender: Toyota Financial Services
+Type: Auto Loan
+Vehicle: 2022 Toyota Camry SE
+Original Loan: $28,000
+Remaining Balance: $18,200
+Monthly Payment: $350.00
+Interest Rate: 4.9% APR
+Remaining Term: 48 months (ends March 2029)
+
+=== CREDIT SCORE ===
+FICO Score: 742 (Good)
+Last Updated: January 2025
+Factors Helping: Long credit history, low utilization on Amazon card
+Factors Hurting: High balance on Sapphire card (17.5% utilization overall)
+
+=== MONTHLY RECURRING AUTO-PAYMENTS ===
+- Rent: $1,500 (1st of month, from Chase Checking)
+- Car Payment: $350 (5th of month, from Chase Checking)
+- Car Insurance (Geico): $120 (10th of month, from Chase Checking)
+- Health Insurance: $280 (1st of month, from Chase Checking)
+- AT&T Phone: $85 (14th of month, from Sapphire card)
+- Verizon Internet: $65 (20th of month, from Sapphire card)
+- Netflix: $15.99 (7th, Amazon card)
+- Spotify: $9.99 (12th, Amazon card)
+- iCloud: $2.99 (15th, Amazon card)
+- Gym (Planet Fitness): $45 (1st, Amazon card)
+- Total Auto-Payments: $2,473.97/month

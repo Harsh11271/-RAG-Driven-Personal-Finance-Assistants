@@ -1,0 +1,50 @@
+INVESTMENT PORTFOLIO SUMMARY - Q1 2025
+
+Account Holder: Valued Client
+Risk Profile: Moderate-Aggressive
+
+=== 401(k) Account ===
+Total Value: $42,500
+Monthly Contribution: $600
+Employer Match: 4% ($208/month)
+Allocation:
+  - S&P 500 Index Fund (VFIAX): 50% — $21,250
+  - International Stock Fund (VTIAX): 20% — $8,500
+  - Bond Index Fund (VBTLX): 20% — $8,500
+  - Small Cap Growth (VSMAX): 10% — $4,250
+YTD Return: +8.2%
+
+=== Roth IRA ===
+Total Value: $18,200
+Monthly Contribution: $500
+Allocation:
+  - Total Stock Market (VTI): 60% — $10,920
+  - Growth ETF (VUG): 25% — $4,550
+  - REITs (VNQ): 15% — $2,730
+YTD Return: +11.5%
+
+=== Brokerage Account ===
+Total Value: $8,750
+Monthly Contribution: $300
+Holdings:
+  - Apple (AAPL): 15 shares @ $182 = $2,730
+  - Microsoft (MSFT): 8 shares @ $405 = $3,240
+  - NVIDIA (NVDA): 3 shares @ $720 = $2,160
+  - Cash: $620
+YTD Return: +14.3%
+
+=== Emergency Fund ===
+High-Yield Savings Account (Marcus by Goldman Sachs)
+Balance: $8,200
+APY: 4.40%
+Target: $15,000
+
+TOTAL PORTFOLIO VALUE: $77,650
+TOTAL MONTHLY INVESTMENT: $1,608 (including employer match)
+PROJECTED ANNUAL GROWTH (7% avg): ~$5,436
+
+FINANCIAL ADVISOR NOTES:
+- On track for retirement at age 55 with current savings rate
+- Consider increasing 401k contribution to max ($23,000/year)
+- Emergency fund is 55% funded — prioritize reaching $15k target
+- Tax loss harvesting opportunity in brokerage account Q4

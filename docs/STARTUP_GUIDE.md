@@ -63,7 +63,7 @@ curl http://localhost:8081/health
 1. Open **http://localhost:8080**
 2. Click **Register** → Create an account
 3. **Login** with your credentials
-4. You'll land on the **Dashboard** with mock financial data
+4. You'll land on the **Dashboard**. Upload documents to see AI-generated personalized insights.
 5. Go to **Chat** → Ask questions like:
    - "What are my recent transactions?"
    - "How much did I spend last month?"

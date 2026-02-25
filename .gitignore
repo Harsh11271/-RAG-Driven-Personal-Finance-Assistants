@@ -32,11 +32,3 @@ npm-debug.log*
 dist/
 build/
 
-# User Data & Uploads
-data/
-!data/.gitkeep
-user-uploads/
-*.csv
-*Bank statements.txt
-*Transactions.txt
-financial_goals.txt
