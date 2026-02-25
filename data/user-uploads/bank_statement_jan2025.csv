@@ -1,0 +1,31 @@
+date,description,category,amount,balance
+2025-01-02,Salary Deposit,Income,5200.00,12450.00
+2025-01-03,Rent Payment,Housing,-1500.00,10950.00
+2025-01-03,Car Payment - Toyota Finance,Auto,-350.00,10600.00
+2025-01-05,Whole Foods Market,Groceries,-87.50,10512.50
+2025-01-06,Shell Gas Station,Transportation,-45.00,10467.50
+2025-01-07,Netflix Subscription,Entertainment,-15.99,10451.51
+2025-01-08,Starbucks Coffee,Dining,-6.75,10444.76
+2025-01-09,Amazon Purchase - Headphones,Shopping,-79.99,10364.77
+2025-01-10,Transfer to Savings,Savings,-500.00,9864.77
+2025-01-11,Chipotle Mexican Grill,Dining,-12.50,9852.27
+2025-01-12,Costco Wholesale,Groceries,-156.30,9695.97
+2025-01-13,Uber Ride,Transportation,-18.50,9677.47
+2025-01-14,AT&T Phone Bill,Utilities,-85.00,9592.47
+2025-01-15,Freelance Payment - Web Design,Income,800.00,10392.47
+2025-01-16,Target,Shopping,-45.60,10346.87
+2025-01-17,Planet Fitness,Health,-45.00,10301.87
+2025-01-18,Trader Joe's,Groceries,-62.30,10239.57
+2025-01-19,Movie Theater - AMC,Entertainment,-24.00,10215.57
+2025-01-20,Electric Bill - ConEd,Utilities,-120.00,10095.57
+2025-01-21,Apple Store - AirPods,Shopping,-154.00,9941.57
+2025-01-22,Spotify Premium,Entertainment,-9.99,9931.58
+2025-01-23,Walgreens Pharmacy,Health,-35.00,9896.58
+2025-01-24,Transfer to 401k,Savings,-600.00,9296.58
+2025-01-25,Grubhub Delivery,Dining,-28.75,9267.83
+2025-01-26,Home Depot,Home,-89.00,9178.83
+2025-01-27,Verizon Internet,Utilities,-65.00,9113.83
+2025-01-28,Kroger Groceries,Groceries,-94.20,9019.63
+2025-01-29,Transfer to Roth IRA,Savings,-500.00,8519.63
+2025-01-30,Gas Station - BP,Transportation,-52.00,8467.63
+2025-01-31,iCloud Storage,Entertainment,-2.99,8464.64

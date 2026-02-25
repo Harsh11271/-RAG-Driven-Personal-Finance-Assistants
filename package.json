@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test:rag": "node scripts/test-rag-flow.js"
+  },
+  "dependencies": {
+    "@google-cloud/vertexai": "^1.10.0",
+    "axios": "^1.13.5"
+  }
+}

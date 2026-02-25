@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment (contains API keys — NEVER commit)
+.env
+**/.env
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker volumes (local data)
+postgres_data/
+mongo_data/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build output
+dist/
+build/

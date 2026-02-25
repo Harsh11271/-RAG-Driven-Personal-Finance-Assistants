@@ -1,0 +1,22 @@
+[
+    {
+        "question": "How do I connect my bank account?",
+        "answer": "Go to the Accounts page and click on 'Connect with Plaid'. Follow the on-screen instructions to link your financial institution securely."
+    },
+    {
+        "question": "What documents should I upload to the vault?",
+        "answer": "For the best AI analysis, we recommend uploading recent bank statements, tax returns (W2/1040), and investment portfolio summaries."
+    },
+    {
+        "question": "As my data safe?",
+        "answer": "Yes, we use industry-standard encryption for all data in the AI Vault. Your personal documents are processed locally by the Pathway engine and are not used for general training of basic LLMs."
+    },
+    {
+        "question": "What is the $10,000 threshold?",
+        "answer": "According to AML compliance standards, transactions over $10,000 are subject to mandatory reporting. Our AI helps monitor these to ensure you stay compliant."
+    },
+    {
+        "question": "How does the AI personalization work?",
+        "answer": "The AI uses a Retrieval-Augmented Generation (RAG) pipeline. It combines your specific financial goals and uploaded documents with its general financial knowledge to give you tailored advice."
+    }
+]
