@@ -100,13 +100,16 @@ def chunk_text(text, max_chars=1000):
         chunks.append(current.strip())
     return chunks if chunks else [text]
 
-def index_file(filepath):
+def index_file(filepath, relative_source=None):
     """Read, chunk, embed, and store a file."""
     path = Path(filepath)
     file_hash = hashlib.md5(f"{path.name}_{path.stat().st_mtime}".encode()).hexdigest()
 
     if file_hash in doc_hashes:
         return 0
+
+    # Use relative_source to preserve userId folder, e.g. "testuser/bank.csv"
+    source = relative_source or path.name
 
     try:
         if path.suffix.lower() == '.csv':
@@ -124,7 +127,7 @@ def index_file(filepath):
         emb = get_embedder()
 
         for chunk in chunks:
-            doc_entry = {"text": chunk, "source": path.name, "embedding": []}
+            doc_entry = {"text": chunk, "source": source, "embedding": []}
             if emb:
                 try:
                     doc_entry["embedding"] = emb([chunk])[0]
@@ -133,23 +136,29 @@ def index_file(filepath):
             documents.append(doc_entry)
 
         doc_hashes.add(file_hash)
-        print(f"  Indexed: {path.name} ({len(chunks)} chunks)")
+        print(f"  Indexed: {source} ({len(chunks)} chunks)")
         return len(chunks)
     except Exception as e:
-        print(f"  Error indexing {path.name}: {e}")
+        print(f"  Error indexing {source}: {e}")
         return 0
 
 def scan_directory():
-    """Scan DATA_DIR for files to index."""
+    """Scan DATA_DIR recursively for files to index (supports per-user subdirs)."""
     data_path = Path(DATA_DIR)
     if not data_path.exists():
         data_path.mkdir(parents=True, exist_ok=True)
         return
 
     total = 0
-    for f in data_path.iterdir():
+    # Recurse: index files in root AND subdirectories (e.g., data/user-uploads/testuser/)
+    for f in data_path.rglob('*'):
         if f.is_file():
-            total += index_file(f)
+            # Build relative path from DATA_DIR to preserve userId folder
+            try:
+                rel = f.relative_to(data_path)
+                total += index_file(f, relative_source=str(rel))
+            except ValueError:
+                total += index_file(f)
     if total > 0:
         print(f"  Total new chunks indexed: {total}")
 
@@ -175,8 +184,18 @@ class RAGHandler(BaseHTTPRequestHandler):
                 data = json.loads(body)
                 query = data.get("query", "")
                 k = data.get("k", 3)
+                user_id = data.get("userId", None)
 
-                results = embed_and_search(query, k)
+                results = embed_and_search(query, k * 3 if user_id else k)
+
+                # Filter by userId if provided, but also include general root-level docs
+                if user_id:
+                    user_prefix = f"{user_id}/"
+                    filtered = []
+                    for r in results:
+                        if r["source"].startswith(user_prefix) or "/" not in r["source"]:
+                            filtered.append(r)
+                    results = filtered[:k]
 
                 self.send_response(200)
                 self.send_header("Content-Type", "application/json")

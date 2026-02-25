@@ -9,51 +9,46 @@ const getGeminiClient = () => {
 };
 
 const genAI = getGeminiClient();
+const promptBuilder = require('./promptBuilder');
 
 const generateAnswer = async (query, context, history = []) => {
     if (!genAI) {
         return "Gemini API Key is missing. Please configure GEMINI_API_KEY in .env.";
     }
 
-    const prompt = `
-You are a helpful financial assistant using Pathway RAG. 
+    const systemPrompt = promptBuilder.buildFinancialPrompt(
+        Array.isArray(context) ? context : [{ source: 'RAG DB', text: context }]
+    );
 
-Context from user documents:
-${context || 'No specific document context found.'}
+    const prompt = `${systemPrompt}\n\nUser Question: ${query}\n\nAnswer concisely based ON THE CONTEXT above. Provide actual amounts if found in the bank statements.`;
+    console.log("=== GEMINI PROMPT ===", prompt.substring(0, 500) + "...\n=====================");
 
-User Question: ${query}
+    const MODEL_NAME = "gemini-2.5-flash";
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-Provide a clear, concise, and helpful answer based on the context above. If the context doesn't contain the answer, use your general financial knowledge but mention that it's general advice.
-    `;
-
-    // Try multiple models in order — if one is rate-limited, try the next
-    const models = ["gemini-2.0-flash-lite", "gemini-2.0-flash", "gemini-2.5-flash-lite"];
-
-    for (const modelName of models) {
+    // Try once, retry once after 5s if rate-limited
+    for (let attempt = 0; attempt < 2; attempt++) {
+        if (attempt > 0) {
+            console.log("Rate-limited. Waiting 5s before retry...");
+            await sleep(5000);
+        }
         try {
-            const model = genAI.getGenerativeModel({ model: modelName });
+            const model = genAI.getGenerativeModel({ model: MODEL_NAME });
             const result = await model.generateContent(prompt);
             const response = await result.response;
             return response.text();
         } catch (error) {
-            // If rate limited (429), try next model immediately — no waiting
-            if (error.message && error.message.includes("429")) {
-                console.warn(`Rate limited on ${modelName}, trying next model...`);
+            if (error.message && (error.message.includes("429") || error.message.includes("503"))) {
+                console.warn(`Rate limited on ${MODEL_NAME} (attempt ${attempt + 1})`);
                 continue;
             }
-            // If model not found (404), try next model
-            if (error.message && error.message.includes("404")) {
-                console.warn(`Model ${modelName} not found, trying next...`);
-                continue;
-            }
-            // Any other error — return friendly message immediately
             console.error('Gemini Service Error:', error.message);
             return `I'm having trouble right now. (${error.message})`;
         }
     }
 
-    // All models exhausted
-    return "All AI models are currently rate-limited. Please wait a minute and try again.";
+    return "AI is temporarily unavailable due to rate limits. Please try again in a minute.";
 };
 
 module.exports = { generateAnswer };
+

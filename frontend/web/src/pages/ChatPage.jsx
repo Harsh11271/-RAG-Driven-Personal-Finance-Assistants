@@ -22,101 +22,159 @@ const ChatPage = () => {
         scrollToBottom();
     }, [messageList]);
 
-    const sendMessage = async () => {
-        if (message !== '') {
-            const messageData = {
+    const sendMessage = async (text) => {
+        const msgText = text || message;
+        if (msgText.trim() === '') return;
+
+        const messageData = {
+            room: 'general',
+            author: user.username,
+            message: msgText,
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        };
+
+        await socket.emit('send_message', messageData);
+        setMessageList((list) => [...list, messageData]);
+        setMessage('');
+
+        setIsAiTyping(true);
+        try {
+            const response = await api.post('/chat/message', {
+                message: msgText,
+                userId: user.username,
+                history: messageList.slice(-10).map(m => ({
+                    role: m.author === user.username ? 'user' : 'assistant',
+                    content: m.message
+                }))
+            });
+
+            const aiMsg = {
                 room: 'general',
-                author: user.username,
-                message: message,
-                time: new Date().toLocaleTimeString(),
+                author: 'AI Assistant',
+                message: response.data.answer,
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
             };
-
-            // 1. Send to local WebSocket for storage/history (Phase 2)
-            await socket.emit('send_message', messageData);
-
-            // 2. Optimistically add to list
-            setMessageList((list) => [...list, messageData]);
-            const userMsg = message;
-            setMessage('');
-
-            // 3. Call LLM Service (Phase 5)
-            setIsAiTyping(true);
-            try {
-                const response = await api.post('/chat/message', {
-                    message: userMsg,
-                    history: messageList.slice(-10).map(m => ({
-                        role: m.author === user.username ? 'user' : 'assistant',
-                        content: m.message
-                    }))
-                });
-
-                const aiMsg = {
-                    room: 'general',
-                    author: 'AI Assistant',
-                    message: response.data.answer,
-                    time: new Date().toLocaleTimeString(),
-                };
-                setMessageList((list) => [...list, aiMsg]);
-            } catch (error) {
-                console.error('LLM Error:', error);
-            } finally {
-                setIsAiTyping(false);
-            }
+            setMessageList((list) => [...list, aiMsg]);
+        } catch (error) {
+            const errMsg = {
+                room: 'general',
+                author: 'AI Assistant',
+                message: 'Sorry, I encountered an error. Please try again.',
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            };
+            setMessageList((list) => [...list, errMsg]);
+        } finally {
+            setIsAiTyping(false);
         }
     };
 
     useEffect(() => {
-        // Join default room
         socket.emit('join_room', 'general');
-
         socket.on('receive_message', (data) => {
-            // Check if message is from self to avoid duplicates if optimistic update used
             if (data.author !== user.username) {
                 setMessageList((list) => [...list, data]);
             }
         });
-
-        return () => {
-            socket.off('receive_message');
-        };
+        return () => { socket.off('receive_message'); };
     }, [user.username]);
 
+    const suggestions = [
+        "What's my total spending this month?",
+        "Do I have any compliance risks?",
+        "Summarize my uploaded documents",
+        "What are the AML rules?",
+    ];
+
     return (
-        <div className="chat-container">
+        <div className="page-layout">
             <Sidebar />
-            <div className="chat-content">
-                <div className="chat-header">
-                    <h2>Chat Room</h2>
+            <div className="chat-page">
+                {/* Chat Header */}
+                <div className="chat-top-bar">
+                    <div className="chat-title-section">
+                        <div className="chat-ai-avatar-sm">
+                            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
+                        </div>
+                        <div>
+                            <h2>AI Financial Assistant</h2>
+                            <span className="online-status">
+                                <span className="online-dot"></span>
+                                Online
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <div className="chat-messages">
-                    {messageList.map((msg, index) => (
-                        <div key={index} className={`message ${user.username === msg.author ? 'sent' : 'received'}`}>
-                            <div className="message-bubble">
-                                <p>{msg.message}</p>
-                                <span className="message-meta">{msg.author} • {msg.time}</span>
+
+                {/* Messages Area */}
+                <div className="chat-messages-area">
+                    {messageList.length === 0 && !isAiTyping && (
+                        <div className="chat-welcome">
+                            <div className="welcome-icon">
+                                <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#3B82F6" strokeWidth="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
+                            </div>
+                            <h3>How can I help you today?</h3>
+                            <p>Ask me about your finances, compliance rules, or uploaded documents.</p>
+                            <div className="suggestions-grid">
+                                {suggestions.map((s, i) => (
+                                    <button key={i} className="suggestion-chip" onClick={() => sendMessage(s)}>
+                                        {s}
+                                    </button>
+                                ))}
                             </div>
                         </div>
-                    ))}
+                    )}
+
+                    {messageList.map((msg, index) => {
+                        const isUser = user.username === msg.author;
+                        return (
+                            <div key={index} className={`chat-msg ${isUser ? 'user-msg' : 'ai-msg'}`}>
+                                {!isUser && (
+                                    <div className="msg-avatar ai-avatar-circle">
+                                        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /></svg>
+                                    </div>
+                                )}
+                                <div className={`msg-bubble ${isUser ? 'user-bubble' : 'ai-bubble'}`}>
+                                    <p>{msg.message}</p>
+                                    <span className="msg-time">{msg.time}</span>
+                                </div>
+                                {isUser && (
+                                    <div className="msg-avatar user-avatar-circle">
+                                        {user.username.charAt(0).toUpperCase()}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
+
                     {isAiTyping && (
-                        <div className="message received">
-                            <div className="message-bubble typing">
-                                <span className="dot"></span>
-                                <span className="dot"></span>
-                                <span className="dot"></span>
+                        <div className="chat-msg ai-msg">
+                            <div className="msg-avatar ai-avatar-circle">
+                                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /></svg>
+                            </div>
+                            <div className="msg-bubble ai-bubble typing-bubble">
+                                <span className="typing-dot"></span>
+                                <span className="typing-dot"></span>
+                                <span className="typing-dot"></span>
                             </div>
                         </div>
                     )}
                     <div ref={messagesEndRef} />
                 </div>
-                <div className="chat-input">
-                    <input
-                        type="text"
-                        value={message}
-                        placeholder="Type a message..."
-                        onChange={(e) => setMessage(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-                    />
-                    <button onClick={sendMessage}>Send</button>
+
+                {/* Input Bar */}
+                <div className="chat-input-bar">
+                    <div className="input-wrapper">
+                        <input
+                            type="text"
+                            value={message}
+                            placeholder="Ask about your finances..."
+                            onChange={(e) => setMessage(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+                        />
+                        <button className="send-btn" onClick={() => sendMessage()} disabled={!message.trim()}>
+                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22,2 15,22 11,13 2,9" /></svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

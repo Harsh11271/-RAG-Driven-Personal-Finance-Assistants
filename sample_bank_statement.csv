@@ -1,0 +1,26 @@
+Date,Description,Category,Amount,Balance
+2026-02-01,Salary Deposit,Income,+4500.00,15230.00
+2026-02-02,Rent Payment,Housing,-1200.00,14030.00
+2026-02-03,Grocery Mart,Groceries,-87.45,13942.55
+2026-02-04,Netflix Subscription,Entertainment,-15.99,13926.56
+2026-02-05,Electric Bill,Utilities,-142.30,13784.26
+2026-02-06,Gas Station Shell,Transportation,-52.00,13732.26
+2026-02-07,Amazon Purchase,Shopping,-234.99,13497.27
+2026-02-08,Coffee House,Food & Drink,-6.75,13490.52
+2026-02-09,Gym Membership,Health,-49.99,13440.53
+2026-02-10,Freelance Payment,Income,+850.00,14290.53
+2026-02-11,Uber Ride,Transportation,-18.50,14272.03
+2026-02-12,Whole Foods,Groceries,-112.30,14159.73
+2026-02-13,Phone Bill AT&T,Utilities,-85.00,14074.73
+2026-02-14,Valentine Dinner,Food & Drink,-95.00,13979.73
+2026-02-15,Student Loan Payment,Debt,-350.00,13629.73
+2026-02-16,Spotify Premium,Entertainment,-9.99,13619.74
+2026-02-17,Costco Wholesale,Groceries,-205.60,13414.14
+2026-02-18,Car Insurance,Insurance,-189.00,13225.14
+2026-02-19,Side Project Income,Income,+400.00,13625.14
+2026-02-20,Doctor Visit Copay,Health,-30.00,13595.14
+2026-02-21,Target Shopping,Shopping,-67.43,13527.71
+2026-02-22,Internet Bill Comcast,Utilities,-79.99,13447.72
+2026-02-23,Savings Transfer,Savings,-500.00,12947.72
+2026-02-24,Restaurant Chipotle,Food & Drink,-14.25,12933.47
+2026-02-25,Parking Garage,Transportation,-12.00,12921.47
