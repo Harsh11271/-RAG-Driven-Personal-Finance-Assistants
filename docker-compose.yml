@@ -117,7 +117,7 @@ services:
     build: ./frontend/web
     container_name: frontend
     ports:
-      - "8080:8080"
+      - "8083:8080"
     env_file: .env
     environment:
       - REACT_APP_API_URL=http://localhost:3000

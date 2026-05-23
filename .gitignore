@@ -32,3 +32,13 @@ npm-debug.log*
 dist/
 build/
 
+# User uploads and streams
+data/user-uploads/*
+!data/user-uploads/.gitkeep
+data/bank-streams/*
+!data/bank-streams/.gitkeep
+data/simulated-streams/*
+!data/simulated-streams/.gitkeep
+data/alerts_status.csv
+data/debug_transactions.csv
+data/inbound_transactions.csv

@@ -22,7 +22,7 @@ echo ============================================================
 echo.
 echo   Open the app in your browser:
 echo.
-echo     Frontend:    http://localhost:8080
+echo     Frontend:    http://localhost:8083
 echo     API Health:  http://localhost:3000/health
 echo     RAG Health:  http://localhost:8081/health
 echo.

@@ -12,10 +12,10 @@
 | Compliance Service | 3005 | Express | — |
 | Notification Service | 3006 | Express | — |
 | LLM Service | 5000 | Express + Gemini/OpenAI SDK | — |
-| RAG Processor | 8081 | Python http.server + numpy | In-memory vectors |
+| RAG Processor | 8081 | Python + Pathway (VectorStoreServer) | In-memory stream index |
 | Frontend | 8080 | React + Vite | — |
 | MongoDB | 27017 | mongo:6.0 | — |
-| PostgreSQL | 5432 | postgres:15-alpine | — |
+| PostgreSQL | 5432 | postgres:15-alpine | — (Provisioned for architectural ledger store) |
 | Kafka | 9092 | confluentinc/cp-kafka:7.4.0 | — |
 | Zookeeper | 2181 | zookeeper:latest | — |
 
@@ -62,7 +62,8 @@ All frontend requests go through the gateway at `http://localhost:3000`:
 ## Key Design Decisions
 
 - **CSV over Kafka**: Transaction service writes to CSV files instead of Kafka for simplicity. The RAG processor watches the same directory and auto-indexes new data.
-- **No separate vector DB**: The RAG processor uses in-memory numpy vectors instead of Pinecone/Weaviate. Embeddings are recomputed on startup.
+- **Pathway In-Memory Index**: The RAG processor runs a Pathway streaming `VectorStoreServer` to index files incrementally in memory, providing a live and always-up-to-date knowledge base without a standalone vector DB like Pinecone.
+- **PostgreSQL Placeholder**: PostgreSQL is included in the composition topology to reflect a realistic enterprise architecture. Transactions are currently written to CSV files (and watched by Pathway) for simplicity, but the database container remains ready for future structured historical ledger persistence.
 - **Gemini default**: LLM defaults to Gemini (free tier available) with OpenAI as fallback.
 - **Gateway pattern**: All API calls go through a single gateway (port 3000) which proxies to individual services.
 

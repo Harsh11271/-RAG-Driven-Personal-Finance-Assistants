@@ -9,15 +9,15 @@ All commands run in **PowerShell** or **Command Prompt** on Windows.
 
 ```powershell
 # Terminal: PowerShell / CMD
-# Directory: d:\Green\New folder\ai_clude\finance-assistant
+# Directory: finance-assistant
 
-cd "d:\Green\New folder\ai_clude\finance-assistant"
+cd finance-assistant
 docker-compose up --build -d
 ```
 
 > First run = ~5 min (downloads images). After that = ~30 seconds.
 
-The app is ready when you see all containers "Started". Open **http://localhost:8080** in your browser.
+The app is ready when you see all containers "Started". Open **http://localhost:8083** in your browser.
 
 ---
 
@@ -25,9 +25,9 @@ The app is ready when you see all containers "Started". Open **http://localhost:
 
 ```powershell
 # Terminal: PowerShell / CMD
-# Directory: d:\Green\New folder\ai_clude\finance-assistant
+# Directory: finance-assistant
 
-cd "d:\Green\New folder\ai_clude\finance-assistant"
+cd finance-assistant
 
 # Stop all containers (keeps data)
 docker-compose down
@@ -42,9 +42,9 @@ docker-compose down -v
 
 ```powershell
 # Terminal: PowerShell / CMD
-# Directory: d:\Green\New folder\ai_clude\finance-assistant
+# Directory: finance-assistant
 
-cd "d:\Green\New folder\ai_clude\finance-assistant"
+cd finance-assistant
 
 # Just restart (no code changes)
 docker-compose restart llm-service
@@ -64,9 +64,9 @@ Replace `llm-service` with any service name:
 
 ```powershell
 # Terminal: PowerShell / CMD
-# Directory: d:\Green\New folder\ai_clude\finance-assistant
+# Directory: finance-assistant
 
-cd "d:\Green\New folder\ai_clude\finance-assistant"
+cd finance-assistant
 docker-compose ps
 ```
 
@@ -107,9 +107,9 @@ Invoke-WebRequest -Uri http://localhost:8081/health -UseBasicParsing | Select-Ob
 
 ```powershell
 # Terminal: PowerShell / CMD
-# Directory: d:\Green\New folder\ai_clude\finance-assistant
+# Directory: finance-assistant
 
-cd "d:\Green\New folder\ai_clude\finance-assistant"
+cd finance-assistant
 
 # Last 20 lines of a service
 docker-compose logs --tail=20 llm-service
@@ -127,13 +127,13 @@ docker-compose logs --tail=10
 
 ```powershell
 # 1. Open .env in any text editor:
-notepad "d:\Green\New folder\ai_clude\finance-assistant\.env"
+notepad .env
 
 # 2. Change GEMINI_API_KEY=... to your new key
 # 3. Save and close
 
 # 4. Restart the LLM service to pick up the new key:
-cd "d:\Green\New folder\ai_clude\finance-assistant"
+cd finance-assistant
 docker-compose up --build -d llm-service
 ```
 
@@ -144,14 +144,14 @@ docker-compose up --build -d llm-service
 Just drop `.txt` or `.csv` files into this folder:
 
 ```
-d:\Green\New folder\ai_clude\finance-assistant\data\user-uploads\
+data/user-uploads/
 ```
 
 The RAG processor scans every 5 seconds — no restart needed.
 
 ```powershell
 # Example: Create a test document
-echo "My monthly salary is 5000 dollars" > "d:\Green\New folder\ai_clude\finance-assistant\data\user-uploads\my_info.txt"
+echo "My monthly salary is 5000 dollars" > data/user-uploads/my_info.txt
 ```
 
 ---
@@ -160,9 +160,9 @@ echo "My monthly salary is 5000 dollars" > "d:\Green\New folder\ai_clude\finance
 
 ```powershell
 # Terminal: PowerShell / CMD
-# Directory: d:\Green\New folder\ai_clude\finance-assistant
+# Directory: finance-assistant
 
-cd "d:\Green\New folder\ai_clude\finance-assistant"
+cd finance-assistant
 node scripts/test-rag-flow.js
 ```
 
@@ -172,7 +172,7 @@ node scripts/test-rag-flow.js
 
 | URL | What It Is |
 |-----|-----------|
-| http://localhost:8080 | Frontend (Register → Login → Dashboard → Chat) |
+| http://localhost:8083 | Frontend (Register → Login → Dashboard → Chat) |
 | http://localhost:3000/health | API Gateway health check |
 | http://localhost:8081/health | RAG Processor stats (documents indexed) |
 
@@ -182,7 +182,7 @@ node scripts/test-rag-flow.js
 
 ### Container won't start
 ```powershell
-cd "d:\Green\New folder\ai_clude\finance-assistant"
+cd finance-assistant
 docker-compose logs --tail=30 <service-name>
 ```
 
@@ -197,7 +197,7 @@ taskkill /PID <PID> /F
 
 ### Clean rebuild everything
 ```powershell
-cd "d:\Green\New folder\ai_clude\finance-assistant"
+cd finance-assistant
 docker-compose down -v
 docker-compose up --build -d
 ```

@@ -2,6 +2,8 @@
 
 A **microservices-based personal finance assistant** powered by RAG (Retrieval-Augmented Generation). Upload your financial documents, ask questions in natural language, and get AI-powered insights grounded in your real data — all running locally with Docker.
 
+![Dashboard Preview](./docs/dashboard_preview.png)
+
 ---
 
 ## ✨ Features
@@ -55,7 +57,7 @@ A **microservices-based personal finance assistant** powered by RAG (Retrieval-A
 | **LLM Service** | Express | 5000 | Gemini/OpenAI chat with RAG context |
 | **RAG Processor** | Python (HTTP server) | 8081 | File watcher + vector/keyword search |
 | **MongoDB** | mongo:6.0 | 27017 | Auth database |
-| **PostgreSQL** | postgres:15-alpine | — | Relational data store |
+| **PostgreSQL** | postgres:15-alpine | — | Relational data store (Provisioned as architectural ledger store) |
 | **Zookeeper** | zookeeper:latest | 2181 | Kafka coordination |
 | **Kafka** | Confluent CP 7.4 | 9092 | Message broker (optional, CSV fallback active) |
 
@@ -83,7 +85,7 @@ GEMINI_API_KEY=your_actual_key_here
 ### 2. Start Everything
 
 ```powershell
-cd "d:\Green\New folder\ai_clude\finance-assistant"
+cd finance-assistant
 .\start.bat
 ```
 
@@ -104,7 +106,7 @@ docker-compose ps
 
 | URL | What It Is |
 |-----|------------|
-| **http://localhost:8080** | Frontend — Register → Login → Dashboard → Chat |
+| **http://localhost:8083** | Frontend — Register → Login → Dashboard → Chat |
 | http://localhost:3000/health | API Gateway health check |
 | http://localhost:8081/health | RAG Processor stats (documents indexed) |
 
@@ -328,7 +330,7 @@ Invoke-WebRequest -Uri http://localhost:8081/health -UseBasicParsing | Select-Ob
 ## 🛑 Stop the Project
 
 ```powershell
-cd "d:\Green\New folder\ai_clude\finance-assistant"
+cd finance-assistant
 
 # Stop all (keeps data)
 docker-compose down
@@ -379,6 +381,6 @@ docker-compose down -v && docker-compose up --build -d
 | AI / LLM | Google Gemini (`gemini-2.5-flash`), OpenAI (optional) |
 | RAG Engine | Python, NumPy, OpenAI Embeddings (optional keyword fallback) |
 | Auth | JWT, bcryptjs, MongoDB |
-| Databases | MongoDB 6.0, PostgreSQL 15 |
+| Databases | MongoDB 6.0, PostgreSQL 15 (planned ledger store) |
 | Messaging | Apache Kafka, Zookeeper |
 | Infrastructure | Docker, Docker Compose |
