@@ -8,6 +8,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import urllib.request
+import re
 
 load_dotenv()
 
@@ -100,11 +101,14 @@ def get_fallback_embedder():
     fallback_embedder = None
     return None
 
+def tokenize(text):
+    return set(re.findall(r'[a-zA-Z0-9]+', text.lower()))
+
 def fallback_keyword_search(query, k=3):
-    query_words = set(query.lower().split())
+    query_words = tokenize(query)
     scored = []
     for doc in fallback_documents:
-        doc_words = set(doc["text"].lower().split())
+        doc_words = tokenize(doc["text"])
         overlap = len(query_words & doc_words)
         if overlap > 0:
             scored.append((overlap, doc))
@@ -195,7 +199,8 @@ def fallback_scan_directory():
         if f.is_file():
             try:
                 rel = f.relative_to(data_path)
-                total += fallback_index_file(f, relative_source=str(rel))
+                normalized_source = str(rel).replace('\\', '/')
+                total += fallback_index_file(f, relative_source=normalized_source)
             except ValueError:
                 total += fallback_index_file(f)
     if total > 0:

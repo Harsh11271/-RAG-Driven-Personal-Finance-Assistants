@@ -8,6 +8,7 @@ const morgan = require('morgan');
 require('dotenv').config();
 
 const Document = require('./models/Document');
+const plaidRoutes = require('./routes/plaidRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3003;
@@ -61,6 +62,9 @@ const upload = multer({
 app.get('/health', (req, res) => {
     res.json({ status: 'UP', service: 'User Data Service' });
 });
+
+// Plaid Integration Routes
+app.use('/api/user-data/plaid', plaidRoutes);
 
 // ============================================================
 // 1. Upload a document (file saved to disk + metadata to MongoDB)
@@ -172,6 +176,34 @@ app.post('/api/user-data/personalize', async (req, res) => {
     } catch (error) {
         console.error('Personalization error:', error);
         res.status(500).json({ error: 'Failed to save personalization data' });
+    }
+});
+
+// GET Personalization (Smart Training)
+app.get('/api/user-data/personalize', async (req, res) => {
+    const userId = req.query.userId;
+    if (!userId) {
+        return res.status(400).json({ error: 'userId query param required' });
+    }
+
+    try {
+        const goalFile = path.join(UPLOAD_DIR, userId, 'financial_goals.txt');
+        if (fs.existsSync(goalFile)) {
+            const content = fs.readFileSync(goalFile, 'utf8');
+            // Parse content
+            const goalMatch = content.match(/Financial Goal:\s*(.*)/);
+            const contextMatch = content.match(/Context:\s*([\s\S]*?)(?=\n\nUpdated:|$)/);
+            
+            res.json({
+                goal: goalMatch ? goalMatch[1].trim() : '',
+                context: contextMatch ? contextMatch[1].trim() : ''
+            });
+        } else {
+            res.json({ goal: '', context: '' });
+        }
+    } catch (error) {
+        console.error('Fetch personalization error:', error);
+        res.status(500).json({ error: 'Failed to fetch personalization data' });
     }
 });
 
