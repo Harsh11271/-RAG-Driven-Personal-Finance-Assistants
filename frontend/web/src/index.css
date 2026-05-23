@@ -5,9 +5,9 @@
     line-height: 1.5;
     font-weight: 400;
 
-    color-scheme: light;
-    color: #1e293b;
-    background-color: #f8fafc;
+    color-scheme: dark;
+    color: #f8fafc;
+    background-color: #0b0f19;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -19,7 +19,7 @@ body {
     margin: 0;
     min-height: 100vh;
     display: block;
-    /* Remove the center alignment */
+    background-color: #0b0f19;
 }
 
 h1,
@@ -55,14 +55,14 @@ a:hover {
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #0b0f19;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #1e293b;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: #334155;
 }

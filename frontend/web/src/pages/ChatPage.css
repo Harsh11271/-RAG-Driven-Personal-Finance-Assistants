@@ -4,13 +4,13 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background: linear-gradient(180deg, #F0F4FF 0%, #F8FAFC 100%);
+    background: #0b0f19;
 }
 
 /* ========= Chat Header ========= */
 .chat-top-bar {
     padding: 1rem 1.75rem;
-    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    background: #090d16;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
@@ -39,7 +39,6 @@
     0% {
         box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
     }
-
     100% {
         box-shadow: 0 4px 20px rgba(99, 102, 241, 0.5);
     }
@@ -71,12 +70,9 @@
 }
 
 @keyframes onlinePulse {
-
-    0%,
-    100% {
+    0%, 100% {
         box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
     }
-
     50% {
         box-shadow: 0 0 0 5px rgba(16, 185, 129, 0);
     }
@@ -91,9 +87,9 @@
     flex-direction: column;
     gap: 1.15rem;
     background:
-        radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.04), transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.03), transparent 50%),
-        linear-gradient(180deg, #F0F4FF 0%, #F8FAFC 100%);
+        radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.05), transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.04), transparent 50%),
+        #0b0f19;
 }
 
 /* ========= Welcome Screen ========= */
@@ -113,7 +109,6 @@
         opacity: 0;
         transform: translateY(20px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -123,23 +118,20 @@
 .welcome-icon {
     width: 88px;
     height: 88px;
-    background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+    background: rgba(59, 130, 246, 0.1);
     border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
-    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.12);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
     animation: welcomeFloat 4s ease-in-out infinite;
 }
 
 @keyframes welcomeFloat {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: translateY(0);
     }
-
     50% {
         transform: translateY(-8px);
     }
@@ -148,13 +140,13 @@
 .chat-welcome h3 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #0F172A;
+    color: #ffffff;
     font-family: 'Outfit', sans-serif;
     margin-bottom: 0.5rem;
 }
 
 .chat-welcome>p {
-    color: #94A3B8;
+    color: #64748B;
     font-size: 0.92rem;
     margin-bottom: 2rem;
     max-width: 420px;
@@ -170,24 +162,24 @@
 
 .suggestion-chip {
     padding: 0.8rem 1.1rem;
-    background: white;
-    border: 1px solid #E5E7EB;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 14px;
     font-size: 0.84rem;
-    color: #334155;
+    color: #cbd5e1;
     cursor: pointer;
     transition: all 0.25s;
     text-align: left;
     line-height: 1.4;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .suggestion-chip:hover {
     border-color: #3B82F6;
-    background: linear-gradient(135deg, #EFF6FF, white);
+    background: rgba(59, 130, 246, 0.1);
     color: #3B82F6;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
 }
 
 /* ========= Message Bubbles ========= */
@@ -204,7 +196,6 @@
         opacity: 0;
         transform: translateY(10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -261,22 +252,22 @@
     background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
     color: white;
     border-bottom-right-radius: 4px;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
 .ai-bubble {
-    background: white;
-    color: #334155;
-    border: 1px solid #E5E7EB;
+    background: rgba(15, 23, 42, 0.65);
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom-left-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .msg-time {
     display: block;
     font-size: 0.68rem;
     margin-top: 0.4rem;
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 .user-bubble .msg-time {
@@ -289,8 +280,8 @@
     align-items: center;
     gap: 5px;
     padding: 0.8rem 1.2rem;
-    background: white;
-    border: 1px solid #E5E7EB;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom-left-radius: 4px;
 }
 
@@ -311,14 +302,10 @@
 }
 
 @keyframes typingBounce {
-
-    0%,
-    80%,
-    100% {
+    0%, 80%, 100% {
         transform: scale(0.5);
         opacity: 0.3;
     }
-
     40% {
         transform: scale(1);
         opacity: 1;
@@ -328,17 +315,17 @@
 /* ========= Input Bar ========= */
 .chat-input-bar {
     padding: 1rem 2rem 1.25rem;
-    background: white;
-    border-top: 1px solid #E5E7EB;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.03);
+    background: #090d16;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .input-wrapper {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    background: linear-gradient(135deg, #F8FAFC, #F1F5F9);
-    border: 1.5px solid #E5E7EB;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
     padding: 0.45rem 0.55rem 0.45rem 1.25rem;
     transition: all 0.3s;
@@ -346,8 +333,8 @@
 
 .input-wrapper:focus-within {
     border-color: #3B82F6;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08);
-    background: white;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .input-wrapper input {
@@ -356,12 +343,12 @@
     outline: none;
     background: transparent;
     font-size: 0.92rem;
-    color: #334155;
+    color: #ffffff;
     padding: 0.6rem 0;
 }
 
 .input-wrapper input::placeholder {
-    color: #CBD5E1;
+    color: #64748B;
 }
 
 .send-btn {

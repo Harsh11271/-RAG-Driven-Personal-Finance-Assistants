@@ -3,7 +3,7 @@
     flex: 1;
     padding: 2rem;
     overflow-y: auto;
-    background: #F8FAFC;
+    background: #0b0f19;
 }
 
 .settings-header {
@@ -14,11 +14,11 @@
     font-family: 'Outfit', sans-serif;
     font-size: 1.6rem;
     font-weight: 700;
-    color: #0F172A;
+    color: #ffffff;
 }
 
 .settings-subtitle {
-    color: #94A3B8;
+    color: #64748B;
     font-size: 0.9rem;
     margin-top: 0.25rem;
 }
@@ -45,7 +45,7 @@
     border-radius: 10px;
     border: none;
     background: transparent;
-    color: #64748B;
+    color: #94A3B8;
     font-size: 0.88rem;
     font-weight: 500;
     cursor: pointer;
@@ -54,12 +54,12 @@
 }
 
 .settings-tab:hover {
-    background: #F1F5F9;
-    color: #334155;
+    background: rgba(255, 255, 255, 0.03);
+    color: #ffffff;
 }
 
 .settings-tab.active {
-    background: #EFF6FF;
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.15), transparent);
     color: #3B82F6;
     font-weight: 600;
 }
@@ -75,14 +75,15 @@
     font-family: 'Outfit', sans-serif;
     font-size: 1.15rem;
     font-weight: 700;
-    color: #0F172A;
+    color: #ffffff;
     margin-bottom: 1.25rem;
 }
 
 /* ========= Profile Card ========= */
 .profile-card {
-    background: white;
-    border: 1px solid #E5E7EB;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
     border-radius: 14px;
     padding: 1.75rem;
     display: flex;
@@ -114,7 +115,7 @@
 .profile-field label {
     display: block;
     font-size: 0.72rem;
-    color: #94A3B8;
+    color: #64748B;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -124,7 +125,7 @@
 .field-value {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1E293B;
+    color: #ffffff;
 }
 
 .premium-badge {
@@ -146,8 +147,9 @@
 }
 
 .mini-stat {
-    background: white;
-    border: 1px solid #E5E7EB;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
     border-radius: 12px;
     padding: 1rem;
     text-align: center;
@@ -162,7 +164,7 @@
 
 .mini-stat-label {
     font-size: 0.75rem;
-    color: #94A3B8;
+    color: #64748B;
     margin-top: 0.2rem;
 }
 
@@ -171,8 +173,9 @@
     display: flex;
     flex-direction: column;
     gap: 0;
-    background: white;
-    border: 1px solid #E5E7EB;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
     border-radius: 14px;
     overflow: hidden;
 }
@@ -182,7 +185,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 1.1rem 1.5rem;
-    border-bottom: 1px solid #F1F5F9;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .pref-item:last-child {
@@ -192,23 +195,23 @@
 .pref-info h4 {
     font-size: 0.9rem;
     font-weight: 600;
-    color: #1E293B;
+    color: #ffffff;
     margin: 0 0 0.15rem 0;
 }
 
 .pref-info p {
     font-size: 0.8rem;
-    color: #94A3B8;
+    color: #64748B;
     margin: 0;
 }
 
 .pref-select {
     padding: 0.45rem 0.85rem;
-    border: 1px solid #E5E7EB;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 8px;
     font-size: 0.85rem;
-    color: #334155;
-    background: #F8FAFC;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.02);
     cursor: pointer;
     outline: none;
 }
@@ -219,7 +222,7 @@
 
 .toggle-switch {
     font-size: 0.8rem;
-    color: #94A3B8;
+    color: #64748B;
     font-weight: 500;
 }
 
@@ -230,8 +233,8 @@
 
 .action-btn {
     padding: 0.45rem 1rem;
-    background: #EFF6FF;
-    border: 1px solid #BFDBFE;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.25);
     border-radius: 8px;
     color: #3B82F6;
     font-size: 0.82rem;
@@ -241,7 +244,7 @@
 }
 
 .action-btn:hover {
-    background: #DBEAFE;
+    background: rgba(59, 130, 246, 0.2);
 }
 
 .session-count {
@@ -252,10 +255,10 @@
 
 /* ========= Danger Zone ========= */
 .danger-zone {
-    border: 1px solid #FECACA;
+    border: 1px solid rgba(239, 68, 68, 0.2);
     border-radius: 14px;
     padding: 1.25rem 1.5rem;
-    background: #FEF2F2;
+    background: rgba(239, 68, 68, 0.04);
 }
 
 .danger-zone h3 {
@@ -277,20 +280,20 @@
 .danger-item h4 {
     font-size: 0.9rem;
     font-weight: 600;
-    color: #1E293B;
+    color: #ffffff;
     margin: 0;
 }
 
 .danger-item p {
     font-size: 0.8rem;
-    color: #94A3B8;
+    color: #64748B;
     margin: 0.1rem 0 0;
 }
 
 .danger-btn {
     padding: 0.5rem 1.1rem;
-    background: white;
-    border: 1px solid #FECACA;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.25);
     border-radius: 8px;
     color: #EF4444;
     font-size: 0.82rem;

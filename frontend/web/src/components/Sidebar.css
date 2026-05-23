@@ -1,8 +1,8 @@
 .sidebar {
     width: 250px;
     min-width: 250px;
-    background: #ffffff;
-    border-right: 1px solid #E5E7EB;
+    background: #090d16;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -35,13 +35,13 @@
     font-family: 'Outfit', sans-serif;
     font-size: 1.15rem;
     font-weight: 700;
-    color: #0F172A;
+    color: #ffffff;
     letter-spacing: -0.02em;
 }
 
 .brand-sub {
     font-size: 0.7rem;
-    color: #94A3B8;
+    color: #64748B;
     font-weight: 500;
     letter-spacing: 0.02em;
 }
@@ -62,7 +62,7 @@
     border-radius: 10px;
     border: none;
     background: transparent;
-    color: #64748B;
+    color: #94A3B8;
     font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
@@ -72,14 +72,15 @@
 }
 
 .nav-item:hover {
-    background: #F1F5F9;
-    color: #334155;
+    background: rgba(255, 255, 255, 0.03);
+    color: #ffffff;
 }
 
 .nav-item.active {
-    background: #EFF6FF;
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.15), transparent);
     color: #3B82F6;
     font-weight: 600;
+    border-left: 3px fill #3B82F6;
 }
 
 .nav-item.active .nav-icon {
@@ -103,7 +104,7 @@
 .sidebar-footer {
     margin-top: auto;
     padding-top: 1rem;
-    border-top: 1px solid #F1F5F9;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -137,12 +138,12 @@
 .user-name {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #1E293B;
+    color: #ffffff;
 }
 
 .user-role {
     font-size: 0.7rem;
-    color: #94A3B8;
+    color: #64748B;
     font-weight: 500;
 }
 
@@ -154,7 +155,7 @@
     border-radius: 10px;
     border: none;
     background: transparent;
-    color: #94A3B8;
+    color: #64748B;
     font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
@@ -163,6 +164,6 @@
 }
 
 .logout-btn:hover {
-    background: #FEF2F2;
+    background: rgba(239, 68, 68, 0.08);
     color: #EF4444;
 }
