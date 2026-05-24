@@ -4,6 +4,25 @@ A **microservices-based personal finance assistant** powered by RAG (Retrieval-A
 
 ![Dashboard Preview](./docs/dashboard_preview.png)
 
+## 🎥 Demo Video
+
+<a href="./docs/Fintech%20AI%20demo.mp4" target="_blank">
+  <img src="./docs/video_thumbnail.png" alt="Watch AI Finance Assistant Demo" width="600" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+</a>
+
+*Click the image above to watch the full walkthrough video of the AI Finance Assistant, showing document uploads, real-time RAG, and AI chat in action.*
+
+---
+
+## 🔒 Local-First: Privacy & Cost-Efficiency
+
+Financial statements contain highly sensitive personal data. Deploying a 14-container microservices application to the cloud is not only expensive but also poses security risks. 
+
+This project is built **local-first**:
+* **Zero Cloud Hosting Costs:** Run a fully featured RAG search engine, WebSockets, databases, and microservices entirely on your local machine for free.
+* **Data Sovereignty:** Your bank statements, transactions, and PDFs never leave your machine.
+* **Flexible LLM Backend:** Connects to free-tier Google Gemini API for reasoning, avoiding expensive hosted LLM fees.
+
 ---
 
 ## ✨ Features
