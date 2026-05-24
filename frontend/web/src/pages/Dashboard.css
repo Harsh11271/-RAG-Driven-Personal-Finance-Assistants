@@ -675,6 +675,7 @@
 .upload-cta {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     padding: 0.8rem 1.5rem;
     background: linear-gradient(135deg, #3B82F6, #2563EB);
@@ -690,4 +691,80 @@
 .upload-cta:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+/* ========= 3-Column Stats Grid ========= */
+.stat-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+    animation: fadeIn 0.5s ease-out 0.1s both;
+}
+
+@media (max-width: 1024px) {
+    .stat-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========= Document List ========= */
+.tx-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.tx-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    transition: all 0.2s;
+}
+
+.tx-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.tx-info h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.tx-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #64748B;
+}
+
+/* ========= Inputs & Textareas ========= */
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    outline: none;
+    font-family: inherit;
+}
+
+.form-input:focus, .form-textarea:focus {
+    border-color: #3B82F6;
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.form-textarea {
+    min-height: 80px;
+    resize: vertical;
 }
