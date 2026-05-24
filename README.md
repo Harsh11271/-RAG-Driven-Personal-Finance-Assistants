@@ -6,7 +6,7 @@ A **microservices-based personal finance assistant** powered by RAG (Retrieval-A
 
 ## 🎥 Demo Video
 
-<a href="./docs/Fintech%20AI%20demo.mp4" target="_blank">
+<a href="https://raw.githubusercontent.com/harsh-tamrakar/Fintech-AI-RAG-Driven-Personal-Finance-Assistants/feature/plaid-integration/finance-assistant/docs/Fintech%20AI%20demo.mp4" target="_blank">
   <img src="./docs/video_thumbnail.png" alt="Watch AI Finance Assistant Demo" width="600" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
 </a>
 
